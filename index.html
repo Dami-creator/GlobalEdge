@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlobalEdge Scholarship · Pay & Apply</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        body { background:#f4f7fc; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:2rem 1rem; }
+        .card { max-width:880px; width:100%; background:white; border-radius:36px; box-shadow:0 25px 60px -12px rgba(0,20,50,0.25); overflow:hidden; }
+        .header { background:linear-gradient(145deg,#0b1e3a,#1a3a6b); padding:2rem 2.5rem 1.8rem; color:white; }
+        .header-badge { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+        .logo h1 { font-weight:600; font-size:1.9rem; }
+        .logo span { font-weight:300; color:#9bbaff; }
+        .accreditation { display:flex; gap:1.2rem; font-size:0.75rem; background:rgba(255,255,255,0.08); padding:0.5rem 1.2rem; border-radius:60px; border:1px solid rgba(255,255,255,0.15); }
+        .accreditation i { margin-right:6px; color:#ffd966; }
+        .tagline { margin-top:1.2rem; font-size:0.95rem; opacity:0.85; display:flex; gap:2rem; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.1); padding-top:1.2rem; }
+        .tagline i { margin-right:8px; color:#6dafff; }
+        .body { padding:2.5rem; }
+        .grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem; }
+        .full { grid-column:span 2; }
+        .group { display:flex; flex-direction:column; gap:6px; }
+        .group label { font-weight:600; font-size:0.85rem; color:#1e293b; }
+        .group label i { color:#1a3a6b; margin-right:6px; width:18px; }
+        .group input, .group select, .group textarea { padding:12px 16px; border:1.5px solid #e9edf4; border-radius:14px; font-size:0.95rem; background:#fafcff; outline:none; transition:0.15s; }
+        .group input:focus, .group select:focus, .group textarea:focus { border-color:#1a3a6b; box-shadow:0 0 0 4px rgba(26,58,107,0.08); }
+        .group textarea { min-height:80px; resize:vertical; }
+        .fee { background:#f8faff; border-radius:20px; padding:1.5rem 2rem; margin:1.8rem 0 1.2rem; border:1px solid #e2edff; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+        .fee-left { display:flex; align-items:center; gap:12px; }
+        .fee-left i { font-size:1.8rem; color:#1a3a6b; background:white; padding:10px; border-radius:60px; }
+        .fee-left div span { font-weight:700; font-size:1.2rem; color:#0b1e3a; }
+        .fee-left div small { display:block; font-size:0.75rem; color:#5b6f8c; }
+        .fee-amount { font-weight:700; font-size:1.4rem; color:#1a3a6b; }
+        .secure { display:flex; gap:1.8rem; justify-content:flex-end; margin:0.5rem 0 1.8rem; font-size:0.8rem; color:#2d4a72; border-top:1px solid #eef3fa; padding-top:1.2rem; }
+        .secure i { margin-right:6px; color:#2b6c8f; }
+        .actions { display:flex; gap:1rem; justify-content:flex-end; margin-top:1.5rem; border-top:1px solid #eef3fa; padding-top:2rem; }
+        .btn { padding:14px 36px; border:none; border-radius:60px; font-weight:600; font-size:0.95rem; cursor:pointer; transition:0.2s; }
+        .btn-primary { background:#1a3a6b; color:white; box-shadow:0 8px 18px -6px rgba(26,58,107,0.3); }
+        .btn-primary:hover { background:#0f2b50; transform:scale(1.01); }
+        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
+        .legal { font-size:0.7rem; color:#7a8aa3; text-align:center; margin-top:1.8rem; padding-top:1.8rem; border-top:1px solid #edf2f9; }
+        .seals { display:flex; flex-wrap:wrap; justify-content:center; gap:2.5rem; margin:0.5rem 0 0.2rem; font-size:0.7rem; color:#3f5a7a; }
+        .seals i { font-size:1.2rem; color:#1f4a7a; margin-right:5px; }
+        #status { margin-top:1rem; padding:0.8rem; border-radius:12px; display:none; }
+        #status.ok { display:block; background:#e6f7e6; color:#0a5e0a; border:1px solid #b2e0b2; }
+        #status.fail { display:block; background:#fde8e8; color:#8b1a1a; border:1px solid #f5c2c2; }
+        @media(max-width:640px){ .grid{grid-template-columns:1fr} .full{grid-column:span 1} .fee{flex-direction:column; align-items:stretch; gap:1rem} .actions{flex-direction:column} .btn{width:100%} }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="header">
+        <div class="header-badge">
+            <div class="logo"><h1>🌍 GlobalEdge <span>Scholarship</span></h1></div>
+            <div class="accreditation">
+                <span><i class="fas fa-check-circle"></i> UNESCO Partner</span>
+                <span><i class="fas fa-university"></i> 150+ Universities</span>
+                <span><i class="fas fa-globe-americas"></i> 65 Countries</span>
+            </div>
+        </div>
+        <div class="tagline">
+            <span><i class="fas fa-calendar-check"></i> 2026–2027 Intake · Open</span>
+            <span><i class="fas fa-user-graduate"></i> 12,400+ awarded</span>
+            <span><i class="fas fa-shield-alt"></i> Fully accredited</span>
+        </div>
+    </div>
+    <div class="body">
+        <form id="applyForm">
+            <div class="grid">
+                <div class="group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" id="name" placeholder="e.g. Maria Chen" required /></div>
+                <div class="group"><label><i class="fas fa-envelope"></i> Email</label><input type="email" id="email" placeholder="maria@edu" required /></div>
+                <div class="group"><label><i class="fas fa-phone-alt"></i> Phone</label><input type="tel" id="phone" placeholder="+234 800 000 0000" required /></div>
+                <div class="group"><label><i class="fas fa-calendar-alt"></i> Date of Birth</label><input type="date" id="dob" required /></div>
+                <div class="group full"><label><i class="fas fa-graduation-cap"></i> Current Institution</label><input type="text" id="institution" placeholder="University of Lagos" required /></div>
+                <div class="group"><label><i class="fas fa-book-open"></i> Field of Study</label>
+                    <select id="field" required><option value="">Select</option><option>Computer Science</option><option>Engineering</option><option>Medicine</option><option>Business</option><option>Social Sciences</option></select>
+                </div>
+                <div class="group"><label><i class="fas fa-flag"></i> Preferred Country</label>
+                    <select id="country" required><option value="">Select</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option><option>Nigeria</option><option>South Africa</option><option>Kenya</option><option>Ghana</option></select>
+                </div>
+                <div class="group full"><label><i class="fas fa-file-alt"></i> Statement of Purpose</label><textarea id="purpose" placeholder="Brief summary..."></textarea></div>
+            </div>
+
+            <div class="fee">
+                <div class="fee-left"><i class="fas fa-lock"></i><div><span>Application processing fee</span><small>Non-refundable · Paystack secured · International cards accepted</small></div></div>
+                <div class="fee-amount">₦16,000 NGN</div>
+            </div>
+
+            <div class="secure">
+                <span><i class="fas fa-lock"></i> 256-bit SSL</span>
+                <span><i class="fas fa-credit-card"></i> Local & International Cards</span>
+                <span><i class="fas fa-shield-alt"></i> Paystack verified</span>
+            </div>
+            <div class="seals">
+                <span><i class="fas fa-award"></i> QS Top 200</span>
+                <span><i class="fas fa-handshake"></i> British Council</span>
+                <span><i class="fas fa-shield-virus"></i> GDPR compliant</span>
+            </div>
+
+            <div id="status"></div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-primary" id="payBtn"><i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit</button>
+            </div>
+            <div class="legal"><i class="fas fa-info-circle"></i> By paying, you agree to terms. Application stored after successful payment.</div>
+        </form>
+    </div>
+</div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    document.getElementById('payBtn').addEventListener('click', function() {
+        const btn = this;
+        const status = document.getElementById('status');
+        status.className = '';
+        status.style.display = 'none';
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const dob = document.getElementById('dob').value;
+        const institution = document.getElementById('institution').value.trim();
+        const field = document.getElementById('field').value;
+        const country = document.getElementById('country').value;
+        const purpose = document.getElementById('purpose').value.trim();
+
+        if (!name || !email || !phone || !dob || !institution || !field || !country) {
+            status.className = 'fail';
+            status.style.display = 'block';
+            status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill all required fields.';
+            return;
+        }
+
+        const ref = 'GES-' + Date.now() + '-' + Math.random().toString(36).substring(2, 8);
+        const publicKey = 'pk_live_YOUR_PUBLIC_KEY_HERE'; // ← REPLACE THIS
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Initializing...';
+
+        const handler = PaystackPop.setup({
+            key: publicKey,
+            email: email,
+            amount: 1600000, // ₦16,000 in kobo
+            currency: 'NGN',
+            ref: ref,
+            metadata: {
+                full_name: name,
+                phone: phone,
+                dob: dob,
+                institution: institution,
+                field: field,
+                country: country,
+                purpose: purpose
+            },
+            callback: function(response) {
+                fetch('/verify-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reference: response.reference })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status && data.data.status === 'success') {
+                        status.className = 'ok';
+                        status.style.display = 'block';
+                        status.innerHTML = `<i class="fas fa-check-circle"></i> Payment successful! Application submitted. Ref: ${response.reference}`;
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Paid & Submitted';
+                    } else {
+                        status.className = 'fail';
+                        status.style.display = 'block';
+                        status.innerHTML = `<i class="fas fa-times-circle"></i> Verification failed. Contact support.`;
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                    }
+                })
+                .catch(() => {
+                    status.className = 'fail';
+                    status.style.display = 'block';
+                    status.innerHTML = '<i class="fas fa-times-circle"></i> Network error. Try again.';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                });
+            },
+            onClose: function() {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                status.className = 'fail';
+                status.style.display = 'block';
+                status.innerHTML = '<i class="fas fa-window-close"></i> Payment window closed.';
+            }
+        });
+        handler.openIframe();
+    });
+</script>
+</body>
+</html>
