@@ -3,119 +3,666 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GlobalEdge Scholarship · Pay & Apply</title>
+    <title>GlobalEdge Scholarship · Apply Now</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
-        body { background:#f4f7fc; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:2rem 1rem; }
-        .card { max-width:880px; width:100%; background:white; border-radius:36px; box-shadow:0 25px 60px -12px rgba(0,20,50,0.25); overflow:hidden; }
-        .header { background:linear-gradient(145deg,#0b1e3a,#1a3a6b); padding:2rem 2.5rem 1.8rem; color:white; }
-        .header-badge { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-        .logo h1 { font-weight:600; font-size:1.9rem; }
-        .logo span { font-weight:300; color:#9bbaff; }
-        .accreditation { display:flex; gap:1.2rem; font-size:0.75rem; background:rgba(255,255,255,0.08); padding:0.5rem 1.2rem; border-radius:60px; border:1px solid rgba(255,255,255,0.15); }
-        .accreditation i { margin-right:6px; color:#ffd966; }
-        .tagline { margin-top:1.2rem; font-size:0.95rem; opacity:0.85; display:flex; gap:2rem; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.1); padding-top:1.2rem; }
-        .tagline i { margin-right:8px; color:#6dafff; }
-        .body { padding:2.5rem; }
-        .grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem; }
-        .full { grid-column:span 2; }
-        .group { display:flex; flex-direction:column; gap:6px; }
-        .group label { font-weight:600; font-size:0.85rem; color:#1e293b; }
-        .group label i { color:#1a3a6b; margin-right:6px; width:18px; }
-        .group input, .group select, .group textarea { padding:12px 16px; border:1.5px solid #e9edf4; border-radius:14px; font-size:0.95rem; background:#fafcff; outline:none; transition:0.15s; }
-        .group input:focus, .group select:focus, .group textarea:focus { border-color:#1a3a6b; box-shadow:0 0 0 4px rgba(26,58,107,0.08); }
-        .group textarea { min-height:80px; resize:vertical; }
-        .fee { background:#f8faff; border-radius:20px; padding:1.5rem 2rem; margin:1.8rem 0 1.2rem; border:1px solid #e2edff; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; }
-        .fee-left { display:flex; align-items:center; gap:12px; }
-        .fee-left i { font-size:1.8rem; color:#1a3a6b; background:white; padding:10px; border-radius:60px; }
-        .fee-left div span { font-weight:700; font-size:1.2rem; color:#0b1e3a; }
-        .fee-left div small { display:block; font-size:0.75rem; color:#5b6f8c; }
-        .fee-amount { font-weight:700; font-size:1.4rem; color:#1a3a6b; }
-        .secure { display:flex; gap:1.8rem; justify-content:flex-end; margin:0.5rem 0 1.8rem; font-size:0.8rem; color:#2d4a72; border-top:1px solid #eef3fa; padding-top:1.2rem; }
-        .secure i { margin-right:6px; color:#2b6c8f; }
-        .actions { display:flex; gap:1rem; justify-content:flex-end; margin-top:1.5rem; border-top:1px solid #eef3fa; padding-top:2rem; }
-        .btn { padding:14px 36px; border:none; border-radius:60px; font-weight:600; font-size:0.95rem; cursor:pointer; transition:0.2s; }
-        .btn-primary { background:#1a3a6b; color:white; box-shadow:0 8px 18px -6px rgba(26,58,107,0.3); }
-        .btn-primary:hover { background:#0f2b50; transform:scale(1.01); }
-        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
-        .legal { font-size:0.7rem; color:#7a8aa3; text-align:center; margin-top:1.8rem; padding-top:1.8rem; border-top:1px solid #edf2f9; }
-        .seals { display:flex; flex-wrap:wrap; justify-content:center; gap:2.5rem; margin:0.5rem 0 0.2rem; font-size:0.7rem; color:#3f5a7a; }
-        .seals i { font-size:1.2rem; color:#1f4a7a; margin-right:5px; }
-        #status { margin-top:1rem; padding:0.8rem; border-radius:12px; display:none; }
-        #status.ok { display:block; background:#e6f7e6; color:#0a5e0a; border:1px solid #b2e0b2; }
-        #status.fail { display:block; background:#fde8e8; color:#8b1a1a; border:1px solid #f5c2c2; }
-        @media(max-width:640px){ .grid{grid-template-columns:1fr} .full{grid-column:span 1} .fee{flex-direction:column; align-items:stretch; gap:1rem} .actions{flex-direction:column} .btn{width:100%} }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            background: #f0f4fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .card {
+            max-width: 1024px;
+            width: 100%;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 30px 70px -15px rgba(0, 20, 40, 0.25);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        /* HEADER */
+        .header {
+            background: linear-gradient(145deg, #0b1e3a, #1a3a6b);
+            padding: 1.8rem 2.5rem;
+            color: white;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-weight: 300;
+            color: #9bbaff;
+        }
+        .badges {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.7rem;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .badges i {
+            margin-right: 4px;
+            color: #ffd966;
+        }
+        .tagline {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1rem;
+        }
+        .tagline i {
+            margin-right: 6px;
+            color: #6dafff;
+        }
+
+        /* BODY */
+        .body {
+            padding: 2.5rem;
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .form-col {
+            flex: 2;
+            min-width: 280px;
+        }
+        .ad-col {
+            flex: 1;
+            min-width: 200px;
+            background: #f8fbff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            border: 1px solid #e9eff6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: fit-content;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .ad-col img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 60px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid white;
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.15);
+        }
+        .ad-col .quote {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #0b1e3a;
+            line-height: 1.5;
+        }
+        .ad-col .quote i {
+            color: #1a3a6b;
+            opacity: 0.4;
+            font-size: 1.2rem;
+        }
+        .ad-col .student-name {
+            margin-top: 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2d4a72;
+        }
+        .ad-col .flag {
+            font-size: 1.8rem;
+            margin-top: 0.3rem;
+        }
+        .ad-col .badge-country {
+            background: #e6edf8;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: #1a3a6b;
+            margin-top: 0.5rem;
+        }
+
+        /* PROGRESS */
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 0.5rem;
+        }
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 8%;
+            width: 84%;
+            height: 3px;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            background: white;
+            padding: 0 8px;
+        }
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #2d3748;
+            transition: 0.2s;
+        }
+        .step.active .step-circle {
+            background: #1a3a6b;
+            color: white;
+            box-shadow: 0 4px 12px rgba(26, 58, 107, 0.3);
+        }
+        .step-label {
+            margin-top: 6px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #4a5568;
+            letter-spacing: 0.2px;
+        }
+        .step.active .step-label {
+            color: #1a3a6b;
+        }
+
+        /* FORM */
+        .page {
+            display: none;
+            animation: fade 0.25s ease;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fade {
+            0% { opacity: 0.4; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+        .full {
+            grid-column: span 2;
+        }
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .group label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #1e293b;
+        }
+        .group label i {
+            color: #1a3a6b;
+            margin-right: 6px;
+            width: 18px;
+        }
+        .group input,
+        .group select,
+        .group textarea {
+            padding: 11px 15px;
+            border: 1.5px solid #e9edf4;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            background: #fafcff;
+            outline: none;
+            transition: 0.15s;
+        }
+        .group input:focus,
+        .group select:focus,
+        .group textarea:focus {
+            border-color: #1a3a6b;
+            box-shadow: 0 0 0 4px rgba(26, 58, 107, 0.06);
+            background: white;
+        }
+        .group textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        /* REVIEW PAGE */
+        .review-box {
+            background: #f8fbff;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            border: 1px solid #e2edff;
+            margin-bottom: 1.8rem;
+        }
+        .review-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #e9eff6;
+            font-size: 0.9rem;
+        }
+        .review-row:last-child {
+            border-bottom: none;
+        }
+        .review-label {
+            font-weight: 500;
+            color: #2d4a72;
+        }
+        .review-value {
+            color: #0b1e3a;
+            font-weight: 500;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .fee-badge {
+            background: #eaf3ff;
+            border-radius: 60px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1a3a6b;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* BUTTONS */
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            border-top: 1px solid #eef3fa;
+            padding-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline {
+            background: white;
+            color: #1a3a6b;
+            border: 1.5px solid #dce5f2;
+        }
+        .btn-outline:hover {
+            background: #f0f5ff;
+        }
+        .btn-primary {
+            background: #1a3a6b;
+            color: white;
+            box-shadow: 0 8px 18px -6px rgba(26, 58, 107, 0.3);
+        }
+        .btn-primary:hover {
+            background: #0f2b50;
+            transform: scale(1.01);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-success {
+            background: #0f7b3a;
+            color: white;
+            box-shadow: 0 8px 18px -6px #0f7b3a66;
+        }
+        .btn-success:hover {
+            background: #0a632e;
+        }
+
+        #status {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 12px;
+            display: none;
+        }
+        #status.ok {
+            display: block;
+            background: #e6f7e6;
+            color: #0a5e0a;
+            border: 1px solid #b2e0b2;
+        }
+        #status.fail {
+            display: block;
+            background: #fde8e8;
+            color: #8b1a1a;
+            border: 1px solid #f5c2c2;
+        }
+
+        .legal {
+            font-size: 0.65rem;
+            color: #7a8aa3;
+            text-align: center;
+            margin-top: 1.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #edf2f9;
+        }
+
+        .seals {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 0.2rem 0 0.5rem;
+            font-size: 0.65rem;
+            color: #3f5a7a;
+        }
+        .seals i {
+            font-size: 1rem;
+            color: #1f4a7a;
+            margin-right: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .full {
+                grid-column: span 1;
+            }
+            .body {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            .ad-col {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1.2rem;
+            }
+            .ad-col img {
+                max-width: 80px;
+                margin-bottom: 0;
+            }
+            .ad-col .quote {
+                font-size: 0.85rem;
+                text-align: left;
+                flex: 1;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .header {
+                padding: 1.2rem 1.5rem;
+            }
+            .badges {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .progress-steps {
+                padding: 0;
+            }
+            .step-label {
+                font-size: 0.55rem;
+            }
+        }
     </style>
 </head>
 <body>
+
 <div class="card">
+    <!-- HEADER -->
     <div class="header">
-        <div class="header-badge">
+        <div class="header-top">
             <div class="logo"><h1>🌍 GlobalEdge <span>Scholarship</span></h1></div>
-            <div class="accreditation">
-                <span><i class="fas fa-check-circle"></i> UNESCO Partner</span>
-                <span><i class="fas fa-university"></i> 150+ Universities</span>
+            <div class="badges">
+                <span><i class="fas fa-check-circle"></i> UNESCO</span>
+                <span><i class="fas fa-university"></i> 150+ Univ.</span>
                 <span><i class="fas fa-globe-americas"></i> 65 Countries</span>
             </div>
         </div>
         <div class="tagline">
-            <span><i class="fas fa-calendar-check"></i> 2026–2027 Intake · Open</span>
+            <span><i class="fas fa-calendar-check"></i> 2026–2027 · Open</span>
             <span><i class="fas fa-user-graduate"></i> 12,400+ awarded</span>
-            <span><i class="fas fa-shield-alt"></i> Fully accredited</span>
+            <span><i class="fas fa-shield-alt"></i> Accredited</span>
         </div>
     </div>
+
+    <!-- BODY -->
     <div class="body">
-        <form id="applyForm">
-            <div class="grid">
-                <div class="group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" id="name" placeholder="e.g. Maria Chen" required /></div>
-                <div class="group"><label><i class="fas fa-envelope"></i> Email</label><input type="email" id="email" placeholder="maria@edu" required /></div>
-                <div class="group"><label><i class="fas fa-phone-alt"></i> Phone</label><input type="tel" id="phone" placeholder="+234 800 000 0000" required /></div>
-                <div class="group"><label><i class="fas fa-calendar-alt"></i> Date of Birth</label><input type="date" id="dob" required /></div>
-                <div class="group full"><label><i class="fas fa-graduation-cap"></i> Current Institution</label><input type="text" id="institution" placeholder="University of Lagos" required /></div>
-                <div class="group"><label><i class="fas fa-book-open"></i> Field of Study</label>
-                    <select id="field" required><option value="">Select</option><option>Computer Science</option><option>Engineering</option><option>Medicine</option><option>Business</option><option>Social Sciences</option></select>
+        <!-- FORM COLUMN -->
+        <div class="form-col">
+            <!-- PROGRESS STEPS -->
+            <div class="progress-steps">
+                <div class="step active" data-step="1"><div class="step-circle">1</div><div class="step-label">Personal</div></div>
+                <div class="step" data-step="2"><div class="step-circle">2</div><div class="step-label">Academics</div></div>
+                <div class="step" data-step="3"><div class="step-circle">3</div><div class="step-label">Review & Pay</div></div>
+            </div>
+
+            <form id="applyForm">
+                <!-- PAGE 1 -->
+                <div class="page active" data-page="1">
+                    <div class="grid">
+                        <div class="group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" id="name" placeholder="e.g. Maria Chen" required /></div>
+                        <div class="group"><label><i class="fas fa-envelope"></i> Email</label><input type="email" id="email" placeholder="maria@edu" required /></div>
+                        <div class="group"><label><i class="fas fa-phone-alt"></i> Phone</label><input type="tel" id="phone" placeholder="+234 800 000 0000" required /></div>
+                        <div class="group"><label><i class="fas fa-calendar-alt"></i> Date of Birth</label><input type="date" id="dob" required /></div>
+                    </div>
+                    <div class="actions">
+                        <span></span>
+                        <button type="button" class="btn btn-primary next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
-                <div class="group"><label><i class="fas fa-flag"></i> Preferred Country</label>
-                    <select id="country" required><option value="">Select</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option><option>Nigeria</option><option>South Africa</option><option>Kenya</option><option>Ghana</option></select>
+
+                <!-- PAGE 2 -->
+                <div class="page" data-page="2">
+                    <div class="grid">
+                        <div class="group full"><label><i class="fas fa-graduation-cap"></i> Current Institution</label><input type="text" id="institution" placeholder="University of Lagos" required /></div>
+                        <div class="group"><label><i class="fas fa-book-open"></i> Field of Study</label>
+                            <select id="field" required><option value="">Select</option><option>Computer Science</option><option>Engineering</option><option>Medicine</option><option>Business</option><option>Social Sciences</option><option>Natural Sciences</option><option>Law</option></select>
+                        </div>
+                        <div class="group"><label><i class="fas fa-flag"></i> Preferred Country</label>
+                            <select id="country" required><option value="">Select</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Singapore</option><option>Nigeria</option><option>South Africa</option><option>Kenya</option><option>Ghana</option></select>
+                        </div>
+                        <div class="group full"><label><i class="fas fa-file-alt"></i> Statement of Purpose</label><textarea id="purpose" placeholder="Briefly describe your goals and why you deserve this scholarship..."></textarea></div>
+                    </div>
+                    <div class="actions">
+                        <button type="button" class="btn btn-outline prev-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" class="btn btn-primary next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
                 </div>
-                <div class="group full"><label><i class="fas fa-file-alt"></i> Statement of Purpose</label><textarea id="purpose" placeholder="Brief summary..."></textarea></div>
-            </div>
 
-            <div class="fee">
-                <div class="fee-left"><i class="fas fa-lock"></i><div><span>Application processing fee</span><small>Non-refundable · Paystack secured · International cards accepted</small></div></div>
-                <div class="fee-amount">₦16,000 NGN</div>
-            </div>
+                <!-- PAGE 3 -->
+                <div class="page" data-page="3">
+                    <div class="review-box">
+                        <div class="review-row"><span class="review-label">Full Name</span><span class="review-value" id="rName">—</span></div>
+                        <div class="review-row"><span class="review-label">Email</span><span class="review-value" id="rEmail">—</span></div>
+                        <div class="review-row"><span class="review-label">Phone</span><span class="review-value" id="rPhone">—</span></div>
+                        <div class="review-row"><span class="review-label">Date of Birth</span><span class="review-value" id="rDob">—</span></div>
+                        <div class="review-row"><span class="review-label">Institution</span><span class="review-value" id="rInst">—</span></div>
+                        <div class="review-row"><span class="review-label">Field of Study</span><span class="review-value" id="rField">—</span></div>
+                        <div class="review-row"><span class="review-label">Preferred Country</span><span class="review-value" id="rCountry">—</span></div>
+                        <div class="review-row"><span class="review-label">Statement</span><span class="review-value" id="rPurpose" style="font-weight:400; font-size:0.8rem;">—</span></div>
+                    </div>
 
-            <div class="secure">
-                <span><i class="fas fa-lock"></i> 256-bit SSL</span>
-                <span><i class="fas fa-credit-card"></i> Local & International Cards</span>
-                <span><i class="fas fa-shield-alt"></i> Paystack verified</span>
-            </div>
-            <div class="seals">
-                <span><i class="fas fa-award"></i> QS Top 200</span>
-                <span><i class="fas fa-handshake"></i> British Council</span>
-                <span><i class="fas fa-shield-virus"></i> GDPR compliant</span>
-            </div>
+                    <div style="text-align:center; margin: 0.5rem 0 1.2rem;">
+                        <span class="fee-badge"><i class="fas fa-lock"></i> Application fee: ₦16,000 NGN (international cards accepted)</span>
+                    </div>
 
-            <div id="status"></div>
+                    <div id="status"></div>
 
-            <div class="actions">
-                <button type="button" class="btn btn-primary" id="payBtn"><i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit</button>
-            </div>
-            <div class="legal"><i class="fas fa-info-circle"></i> By paying, you agree to terms. Application stored after successful payment.</div>
-        </form>
+                    <div class="actions">
+                        <button type="button" class="btn btn-outline prev-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button type="button" class="btn btn-success" id="payBtn"><i class="fas fa-paper-plane"></i> Submit & Pay</button>
+                    </div>
+                    <div class="legal"><i class="fas fa-info-circle"></i> By submitting, you agree to our terms. Fee is non-refundable.</div>
+                </div>
+            </form>
+        </div>
+
+        <!-- AD COLUMN -->
+        <div class="ad-col" id="adColumn">
+            <!-- dynamically updated by JS -->
+        </div>
+    </div>
+
+    <div class="seals" style="padding: 0 2.5rem 1rem;">
+        <span><i class="fas fa-award"></i> QS Top 200</span>
+        <span><i class="fas fa-handshake"></i> British Council</span>
+        <span><i class="fas fa-shield-virus"></i> GDPR compliant</span>
+        <span><i class="fas fa-credit-card"></i> Local & Int’l cards</span>
     </div>
 </div>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
+    // -------------------- AD DATA --------------------
+    const ads = [
+        {
+            img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&h=200&fit=crop&crop=face',
+            quote: '“From Lagos to London — fully funded. This program changed everything.”',
+            name: 'Amara O.',
+            flag: '🇳🇬',
+            badge: 'Alumni · Imperial College'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+            quote: '“I never thought I could afford MIT. GlobalEdge made it possible.”',
+            name: 'James K.',
+            flag: '🇰🇪',
+            badge: 'Alumni · MIT'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face',
+            quote: '“Over 12,000 students have taken this step. Yours is next.”',
+            name: 'GlobalEdge Team',
+            flag: '🌍',
+            badge: 'Since 2018'
+        }
+    ];
+
+    // -------------------- STATE --------------------
+    let currentPage = 1;
+    const totalPages = 3;
+
+    // DOM refs
+    const pages = document.querySelectorAll('.page');
+    const steps = document.querySelectorAll('.step');
+    const adCol = document.getElementById('adColumn');
+
+    // -------------------- RENDER AD --------------------
+    function renderAd(pageNum) {
+        const ad = ads[pageNum - 1] || ads[0];
+        adCol.innerHTML = `
+            <img src="${ad.img}" alt="Student" />
+            <div class="quote"><i class="fas fa-quote-left"></i> ${ad.quote}</div>
+            <div class="student-name">${ad.name}</div>
+            <div class="flag">${ad.flag}</div>
+            <div class="badge-country">${ad.badge}</div>
+        `;
+    }
+
+    // -------------------- NAVIGATION --------------------
+    function goToPage(num) {
+        if (num < 1 || num > totalPages) return;
+        currentPage = num;
+
+        // pages
+        pages.forEach(p => p.classList.remove('active'));
+        document.querySelector(`.page[data-page="${num}"]`).classList.add('active');
+
+        // steps
+        steps.forEach(s => s.classList.remove('active'));
+        document.querySelector(`.step[data-step="${num}"]`).classList.add('active');
+
+        renderAd(num);
+    }
+
+    // next / prev buttons
+    document.querySelectorAll('.next-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // basic validation for page 1 & 2
+            if (currentPage === 1) {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const dob = document.getElementById('dob').value;
+                if (!name || !email || !phone || !dob) {
+                    alert('Please fill in all fields on this page.');
+                    return;
+                }
+            }
+            if (currentPage === 2) {
+                const inst = document.getElementById('institution').value.trim();
+                const field = document.getElementById('field').value;
+                const country = document.getElementById('country').value;
+                if (!inst || !field || !country) {
+                    alert('Please fill in all fields on this page.');
+                    return;
+                }
+            }
+            // update review page
+            if (currentPage === 2) {
+                document.getElementById('rName').textContent = document.getElementById('name').value.trim();
+                document.getElementById('rEmail').textContent = document.getElementById('email').value.trim();
+                document.getElementById('rPhone').textContent = document.getElementById('phone').value.trim();
+                document.getElementById('rDob').textContent = document.getElementById('dob').value;
+                document.getElementById('rInst').textContent = document.getElementById('institution').value.trim();
+                document.getElementById('rField').textContent = document.getElementById('field').value;
+                document.getElementById('rCountry').textContent = document.getElementById('country').value;
+                document.getElementById('rPurpose').textContent = document.getElementById('purpose').value.trim() || '—';
+            }
+            goToPage(currentPage + 1);
+        });
+    });
+
+    document.querySelectorAll('.prev-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            goToPage(currentPage - 1);
+        });
+    });
+
+    // -------------------- PAYSTACK PAYMENT --------------------
     document.getElementById('payBtn').addEventListener('click', function() {
         const btn = this;
         const status = document.getElementById('status');
         status.className = '';
         status.style.display = 'none';
 
+        // Re-collect review data
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -128,7 +675,7 @@
         if (!name || !email || !phone || !dob || !institution || !field || !country) {
             status.className = 'fail';
             status.style.display = 'block';
-            status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill all required fields.';
+            status.innerHTML = '<i class="fas fa-exclamation-circle"></i> Missing data. Please go back and complete all fields.';
             return;
         }
 
@@ -166,13 +713,13 @@
                         status.style.display = 'block';
                         status.innerHTML = `<i class="fas fa-check-circle"></i> Payment successful! Application submitted. Ref: ${response.reference}`;
                         btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-check"></i> Paid & Submitted';
+                        btn.innerHTML = '<i class="fas fa-check"></i> Submitted ✅';
                     } else {
                         status.className = 'fail';
                         status.style.display = 'block';
                         status.innerHTML = `<i class="fas fa-times-circle"></i> Verification failed. Contact support.`;
                         btn.disabled = false;
-                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
                     }
                 })
                 .catch(() => {
@@ -180,12 +727,12 @@
                     status.style.display = 'block';
                     status.innerHTML = '<i class="fas fa-times-circle"></i> Network error. Try again.';
                     btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
                 });
             },
             onClose: function() {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Pay ₦16,000 & Submit';
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
                 status.className = 'fail';
                 status.style.display = 'block';
                 status.innerHTML = '<i class="fas fa-window-close"></i> Payment window closed.';
@@ -193,6 +740,9 @@
         });
         handler.openIframe();
     });
+
+    // -------------------- INIT --------------------
+    goToPage(1);
 </script>
 </body>
 </html>
