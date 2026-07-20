@@ -103,10 +103,29 @@
             text-align: center;
             height: fit-content;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-carousel {
+            width: 100%;
+            position: relative;
+        }
+        .ad-slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeSlide 0.5s ease;
+        }
+        .ad-slide.active {
+            display: flex;
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         .ad-col img {
             width: 100%;
-            max-width: 200px;
+            max-width: 180px;
             border-radius: 60px;
             object-fit: cover;
             margin-bottom: 1rem;
@@ -141,6 +160,25 @@
             font-size: 0.7rem;
             color: #1a3a6b;
             margin-top: 0.5rem;
+        }
+        .ad-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .ad-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d0d9e8;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .ad-dots span.active {
+            background: #1a3a6b;
+            width: 20px;
+            border-radius: 10px;
         }
 
         /* PROGRESS */
@@ -403,20 +441,11 @@
             }
             .ad-col {
                 width: 100%;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+                flex-direction: column;
                 padding: 1.2rem;
             }
             .ad-col img {
-                max-width: 80px;
-                margin-bottom: 0;
-            }
-            .ad-col .quote {
-                font-size: 0.85rem;
-                text-align: left;
-                flex: 1;
+                max-width: 120px;
             }
             .actions {
                 flex-direction: column;
@@ -533,9 +562,12 @@
             </form>
         </div>
 
-        <!-- AD COLUMN -->
+        <!-- AD COLUMN with CAROUSEL -->
         <div class="ad-col" id="adColumn">
-            <!-- dynamically updated by JS -->
+            <div class="ad-carousel" id="adCarousel">
+                <!-- slides injected by JS -->
+            </div>
+            <div class="ad-dots" id="adDots"></div>
         </div>
     </div>
 
@@ -549,14 +581,14 @@
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-    // -------------------- AD DATA --------------------
-    const ads = [
+    // -------------------- AD DATA (10+ slides) --------------------
+    const adSlides = [
         {
             img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&h=200&fit=crop&crop=face',
             quote: '“From Lagos to London — fully funded. This program changed everything.”',
             name: 'Amara O.',
             flag: '🇳🇬',
-            badge: 'Alumni · Imperial College'
+            badge: 'Alumni · Imperial College London'
         },
         {
             img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
@@ -571,50 +603,150 @@
             name: 'GlobalEdge Team',
             flag: '🌍',
             badge: 'Since 2018'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&h=200&fit=crop&crop=face',
+            quote: '“Graduated with zero debt. This scholarship is a lifeline.”',
+            name: 'Fatima B.',
+            flag: '🇳🇬',
+            badge: 'Alumni · University of Oxford'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+            quote: '“From rural Ghana to global classroom. Dreams do come true.”',
+            name: 'Kwame A.',
+            flag: '🇬🇭',
+            badge: 'Alumni · Harvard'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+            quote: '“I earned my PhD with their support. Now I teach others.”',
+            name: 'Dr. Priya S.',
+            flag: '🇮🇳',
+            badge: 'Fellow · Stanford'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+            quote: '“The best investment I ever made was applying.”',
+            name: 'Carlos M.',
+            flag: '🇲🇽',
+            badge: 'Alumni · TU Delft'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
+            quote: '“I went from intern to engineer at Google. Thank you GlobalEdge.”',
+            name: 'Aisha K.',
+            flag: '🇰🇪',
+            badge: 'Alumni · UC Berkeley'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face',
+            quote: '“My family cried when I got the offer. Life‑changing.”',
+            name: 'Thabo M.',
+            flag: '🇿🇦',
+            badge: 'Alumni · LSE'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face',
+            quote: '“I represent my country now. This scholarship gave me wings.”',
+            name: 'Zara H.',
+            flag: '🇵🇰',
+            badge: 'Alumni · UCL'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1488161628813-04466f872be2?w=200&h=200&fit=crop&crop=face',
+            quote: '“Every penny of that fee was worth it. I’m a doctor now.”',
+            name: 'Dr. Youssef E.',
+            flag: '🇪🇬',
+            badge: 'Alumni · Johns Hopkins'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face',
+            quote: '“I built a startup with the network I gained. Unforgettable.”',
+            name: 'Maya L.',
+            flag: '🇧🇷',
+            badge: 'Alumni · INSEAD'
         }
     ];
 
-    // -------------------- STATE --------------------
-    let currentPage = 1;
-    const totalPages = 3;
+    // -------------------- CAROUSEL LOGIC --------------------
+    let currentAdIndex = 0;
+    let adInterval;
 
-    // DOM refs
-    const pages = document.querySelectorAll('.page');
-    const steps = document.querySelectorAll('.step');
-    const adCol = document.getElementById('adColumn');
+    function renderCarousel(pageNum) {
+        const container = document.getElementById('adCarousel');
+        const dotsContainer = document.getElementById('adDots');
 
-    // -------------------- RENDER AD --------------------
-    function renderAd(pageNum) {
-        const ad = ads[pageNum - 1] || ads[0];
-        adCol.innerHTML = `
-            <img src="${ad.img}" alt="Student" />
-            <div class="quote"><i class="fas fa-quote-left"></i> ${ad.quote}</div>
-            <div class="student-name">${ad.name}</div>
-            <div class="flag">${ad.flag}</div>
-            <div class="badge-country">${ad.badge}</div>
-        `;
+        // Filter slides: show all, but we rotate automatically
+        // We'll just render all slides and show only the active one
+        container.innerHTML = '';
+        adSlides.forEach((slide, index) => {
+            const div = document.createElement('div');
+            div.className = `ad-slide ${index === currentAdIndex ? 'active' : ''}`;
+            div.innerHTML = `
+                <img src="${slide.img}" alt="Student" />
+                <div class="quote"><i class="fas fa-quote-left"></i> ${slide.quote}</div>
+                <div class="student-name">${slide.name}</div>
+                <div class="flag">${slide.flag}</div>
+                <div class="badge-country">${slide.badge}</div>
+            `;
+            container.appendChild(div);
+        });
+
+        // Dots
+        dotsContainer.innerHTML = '';
+        adSlides.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.className = index === currentAdIndex ? 'active' : '';
+            dot.addEventListener('click', () => {
+                goToAd(index);
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        // Auto-rotate every 5 seconds
+        clearInterval(adInterval);
+        adInterval = setInterval(() => {
+            goToAd((currentAdIndex + 1) % adSlides.length);
+        }, 5000);
     }
 
-    // -------------------- NAVIGATION --------------------
+    function goToAd(index) {
+        currentAdIndex = index;
+        const slides = document.querySelectorAll('.ad-slide');
+        const dots = document.querySelectorAll('#adDots span');
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        // reset interval
+        clearInterval(adInterval);
+        adInterval = setInterval(() => {
+            goToAd((currentAdIndex + 1) % adSlides.length);
+        }, 5000);
+    }
+
+    // -------------------- PAGE NAVIGATION --------------------
+    let currentPage = 1;
+    const totalPages = 3;
+    const pages = document.querySelectorAll('.page');
+    const steps = document.querySelectorAll('.step');
+
     function goToPage(num) {
         if (num < 1 || num > totalPages) return;
         currentPage = num;
 
-        // pages
         pages.forEach(p => p.classList.remove('active'));
         document.querySelector(`.page[data-page="${num}"]`).classList.add('active');
 
-        // steps
         steps.forEach(s => s.classList.remove('active'));
         document.querySelector(`.step[data-step="${num}"]`).classList.add('active');
 
-        renderAd(num);
+        // Re-render carousel on page change (keeps rotation but resets to current index)
+        // We keep rotation global, no reset needed.
     }
 
-    // next / prev buttons
+    // Next / Prev
     document.querySelectorAll('.next-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            // basic validation for page 1 & 2
             if (currentPage === 1) {
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
@@ -633,9 +765,7 @@
                     alert('Please fill in all fields on this page.');
                     return;
                 }
-            }
-            // update review page
-            if (currentPage === 2) {
+                // update review
                 document.getElementById('rName').textContent = document.getElementById('name').value.trim();
                 document.getElementById('rEmail').textContent = document.getElementById('email').value.trim();
                 document.getElementById('rPhone').textContent = document.getElementById('phone').value.trim();
@@ -655,14 +785,13 @@
         });
     });
 
-    // -------------------- PAYSTACK PAYMENT --------------------
+    // -------------------- PAYSTACK --------------------
     document.getElementById('payBtn').addEventListener('click', function() {
         const btn = this;
         const status = document.getElementById('status');
         status.className = '';
         status.style.display = 'none';
 
-        // Re-collect review data
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -680,7 +809,7 @@
         }
 
         const ref = 'GES-' + Date.now() + '-' + Math.random().toString(36).substring(2, 8);
-        const publicKey = 'pk_live_b5622bad3a685b2e2d781934f3f1e84146dae9fe'; // ← REPLACE THIS
+        const publicKey = 'pk_live_b5622bad3a685b2e2d781934f3f1e84146dae9fe'; // ← REPLACE
 
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Initializing...';
@@ -688,7 +817,7 @@
         const handler = PaystackPop.setup({
             key: publicKey,
             email: email,
-            amount: 1600000, // ₦16,000 in kobo
+            amount: 1600000,
             currency: 'NGN',
             ref: ref,
             metadata: {
@@ -742,6 +871,7 @@
     });
 
     // -------------------- INIT --------------------
+    renderCarousel(1);
     goToPage(1);
 </script>
 </body>
