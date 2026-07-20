@@ -1,0 +1,14 @@
+{
+  "name": "scholarship-paystack",
+  "version": "1.0.0",
+  "description": "Scholarship application with Paystack live payment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.2"
+  }
+}
