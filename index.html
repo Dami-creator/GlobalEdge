@@ -288,7 +288,6 @@
             resize: vertical;
         }
 
-        /* Phone with country code */
         .phone-group {
             display: flex;
             gap: 8px;
@@ -303,7 +302,6 @@
             font-size: 0.85rem;
             background: #fafcff;
             outline: none;
-            transition: 0.15s;
         }
         .phone-group select:focus {
             border-color: #1a3a6b;
@@ -494,7 +492,6 @@
                     <div class="grid">
                         <div class="group"><label><i class="fas fa-user"></i> Full Name</label><input type="text" id="name" placeholder="e.g. Maria Chen" required /></div>
                         <div class="group"><label><i class="fas fa-envelope"></i> Email</label><input type="email" id="email" placeholder="maria@edu" required /></div>
-
                         <div class="group full">
                             <label><i class="fas fa-phone-alt"></i> Phone Number</label>
                             <div class="phone-group">
@@ -506,7 +503,6 @@
                                     <option value="+233">🇬🇭 +233</option>
                                     <option value="+254">🇰🇪 +254</option>
                                     <option value="+27">🇿🇦 +27</option>
-                                    <option value="+234" selected>🇳🇬 +234</option>
                                     <option value="+55">🇧🇷 +55</option>
                                     <option value="+81">🇯🇵 +81</option>
                                     <option value="+49">🇩🇪 +49</option>
@@ -523,7 +519,6 @@
                                 <input type="tel" id="phone" placeholder="800 000 0000" required />
                             </div>
                         </div>
-
                         <div class="group"><label><i class="fas fa-calendar-alt"></i> Date of Birth</label><input type="date" id="dob" required /></div>
                     </div>
                     <div class="actions">
@@ -578,7 +573,7 @@
             </form>
         </div>
 
-        <!-- AD COLUMN -->
+        <!-- AD COLUMN with CAROUSEL -->
         <div class="ad-col" id="adColumn">
             <div class="ad-carousel" id="adCarousel"></div>
             <div class="ad-dots" id="adDots"></div>
@@ -595,7 +590,7 @@
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-    // -------------------- AD DATA (12 slides) --------------------
+    // -------------------- 12 STUDENT ADS --------------------
     const adSlides = [
         { img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=200&h=200&fit=crop&crop=face', quote: '“From Lagos to London — fully funded. This program changed everything.”', name: 'Amara O.', flag: '🇳🇬', badge: 'Alumni · Imperial College London' },
         { img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face', quote: '“I never thought I could afford MIT. GlobalEdge made it possible.”', name: 'James K.', flag: '🇰🇪', badge: 'Alumni · MIT' },
@@ -691,7 +686,7 @@
         btn.addEventListener('click', () => goToPage(currentPage - 1));
     });
 
-    // -------------------- PAYSTACK (Opay & Zap removed via channels) --------------------
+    // -------------------- PAYSTACK (Opay & Zap removed) --------------------
     document.getElementById('payBtn').addEventListener('click', function() {
         const btn = this;
         const status = document.getElementById('status');
@@ -737,8 +732,52 @@
                 country: country,
                 purpose: purpose
             },
-            channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money'], // explicitly excludes opay, zap, etc.
+            // Explicit channels — Opay and Zap are NOT included
+            channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money'],
             callback: function(response) {
                 fetch('/verify-payment', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reference: response.reference })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status && data.data.status === 'success') {
+                        status.className = 'ok';
+                        status.style.display = 'block';
+                        status.innerHTML = `<i class="fas fa-check-circle"></i> Payment successful! Application submitted. Ref: ${response.reference}`;
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-check"></i> Submitted ✅';
+                    } else {
+                        status.className = 'fail';
+                        status.style.display = 'block';
+                        status.innerHTML = `<i class="fas fa-times-circle"></i> Verification failed. Contact support.`;
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
+                    }
+                })
+                .catch(() => {
+                    status.className = 'fail';
+                    status.style.display = 'block';
+                    status.innerHTML = '<i class="fas fa-times-circle"></i> Network error. Try again.';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
+                });
+            },
+            onClose: function() {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit & Pay';
+                status.className = 'fail';
+                status.style.display = 'block';
+                status.innerHTML = '<i class="fas fa-window-close"></i> Payment window closed.';
+            }
+        });
+        handler.openIframe();
+    });
+
+    // -------------------- INIT --------------------
+    renderCarousel();
+    goToPage(1);
+</script>
+</body>
+</html>
