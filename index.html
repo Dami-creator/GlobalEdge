@@ -531,11 +531,125 @@
                 <div class="page" data-page="2">
                     <div class="grid">
                         <div class="group full"><label><i class="fas fa-graduation-cap"></i> Current Institution</label><input type="text" id="institution" placeholder="University of Lagos" required /></div>
-                        <div class="group"><label><i class="fas fa-book-open"></i> Field of Study</label>
-                            <select id="field" required><option value="">Select</option><option>Computer Science</option><option>Engineering</option><option>Medicine</option><option>Business</option><option>Social Sciences</option><option>Natural Sciences</option><option>Law</option></select>
+                        <div class="group full">
+                            <label><i class="fas fa-book-open"></i> Field of Study</label>
+                            <select id="field" required>
+                                <option value="">Select your field</option>
+                                <optgroup label="🔬 STEM & Engineering">
+                                    <option>Computer Science</option>
+                                    <option>Software Engineering</option>
+                                    <option>Data Science & Analytics</option>
+                                    <option>Artificial Intelligence & Machine Learning</option>
+                                    <option>Cybersecurity</option>
+                                    <option>Information Technology</option>
+                                    <option>Electrical Engineering</option>
+                                    <option>Mechanical Engineering</option>
+                                    <option>Civil Engineering</option>
+                                    <option>Chemical Engineering</option>
+                                    <option>Petroleum Engineering</option>
+                                    <option>Biomedical Engineering</option>
+                                    <option>Aerospace Engineering</option>
+                                    <option>Robotics & Automation</option>
+                                    <option>Environmental Engineering</option>
+                                    <option>Materials Science</option>
+                                    <option>Physics</option>
+                                    <option>Chemistry</option>
+                                    <option>Mathematics</option>
+                                    <option>Statistics</option>
+                                    <option>Actuarial Science</option>
+                                </optgroup>
+                                <optgroup label="🩺 Health & Medicine">
+                                    <option>Medicine & Surgery</option>
+                                    <option>Dentistry</option>
+                                    <option>Pharmacy</option>
+                                    <option>Nursing</option>
+                                    <option>Public Health</option>
+                                    <option>Epidemiology</option>
+                                    <option>Veterinary Medicine</option>
+                                    <option>Physiotherapy</option>
+                                    <option>Medical Laboratory Science</option>
+                                    <option>Radiography</option>
+                                    <option>Optometry</option>
+                                </optgroup>
+                                <optgroup label="💼 Business & Finance">
+                                    <option>Business Administration</option>
+                                    <option>Finance</option>
+                                    <option>Accounting</option>
+                                    <option>Economics</option>
+                                    <option>Marketing</option>
+                                    <option>Human Resources</option>
+                                    <option>Entrepreneurship</option>
+                                    <option>Supply Chain Management</option>
+                                    <option>International Business</option>
+                                    <option>Real Estate</option>
+                                    <option>Hospitality & Tourism</option>
+                                </optgroup>
+                                <optgroup label="🏛️ Social Sciences & Humanities">
+                                    <option>Psychology</option>
+                                    <option>Sociology</option>
+                                    <option>Anthropology</option>
+                                    <option>Political Science</option>
+                                    <option>International Relations</option>
+                                    <option>History</option>
+                                    <option>Philosophy</option>
+                                    <option>Linguistics</option>
+                                    <option>Literature</option>
+                                    <option>Communication & Media Studies</option>
+                                    <option>Journalism</option>
+                                    <option>Public Policy</option>
+                                    <option>Social Work</option>
+                                    <option>Gender Studies</option>
+                                </optgroup>
+                                <optgroup label="⚖️ Law & Justice">
+                                    <option>Law (LLB)</option>
+                                    <option>Criminology</option>
+                                    <option>Forensic Science</option>
+                                    <option>Human Rights Law</option>
+                                    <option>Corporate Law</option>
+                                </optgroup>
+                                <optgroup label="🎨 Arts & Design">
+                                    <option>Fine Arts</option>
+                                    <option>Graphic Design</option>
+                                    <option>Fashion Design</option>
+                                    <option>Architecture</option>
+                                    <option>Interior Design</option>
+                                    <option>Urban Planning</option>
+                                    <option>Film & Photography</option>
+                                    <option>Performing Arts</option>
+                                    <option>Music</option>
+                                </optgroup>
+                                <optgroup label="🌍 Agriculture & Environment">
+                                    <option>Agriculture</option>
+                                    <option>Agronomy</option>
+                                    <option>Animal Science</option>
+                                    <option>Environmental Science</option>
+                                    <option>Forestry</option>
+                                    <option>Fisheries</option>
+                                    <option>Food Science & Technology</option>
+                                </optgroup>
+                                <optgroup label="📚 Education">
+                                    <option>Education</option>
+                                    <option>Early Childhood Education</option>
+                                    <option>Secondary Education</option>
+                                    <option>Special Education</option>
+                                    <option>Educational Psychology</option>
+                                    <option>Curriculum & Instruction</option>
+                                </optgroup>
+                            </select>
                         </div>
                         <div class="group"><label><i class="fas fa-flag"></i> Preferred Country</label>
-                            <select id="country" required><option value="">Select</option><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Netherlands</option><option>Singapore</option><option>Nigeria</option><option>South Africa</option><option>Kenya</option><option>Ghana</option></select>
+                            <select id="country" required>
+                                <option value="">Select</option>
+                                <option>USA</option><option>UK</option><option>Canada</option>
+                                <option>Australia</option><option>Germany</option><option>France</option>
+                                <option>Netherlands</option><option>Singapore</option><option>Nigeria</option>
+                                <option>South Africa</option><option>Kenya</option><option>Ghana</option>
+                                <option>Brazil</option><option>India</option><option>China</option>
+                                <option>Japan</option><option>South Korea</option><option>Mexico</option>
+                                <option>Egypt</option><option>Pakistan</option><option>Portugal</option>
+                                <option>Sweden</option><option>Norway</option><option>Denmark</option>
+                                <option>Finland</option><option>Ireland</option><option>New Zealand</option>
+                            </select>
                         </div>
                         <div class="group full"><label><i class="fas fa-file-alt"></i> Statement of Purpose</label><textarea id="purpose" placeholder="Briefly describe your goals and why you deserve this scholarship..."></textarea></div>
                     </div>
@@ -732,7 +846,6 @@
                 country: country,
                 purpose: purpose
             },
-            // Explicit channels — Opay and Zap are NOT included
             channels: ['card', 'bank', 'ussd', 'qr', 'mobile_money'],
             callback: function(response) {
                 fetch('/verify-payment', {
